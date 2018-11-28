@@ -1,0 +1,8 @@
+#photo-template.div {
+  display:flex;
+  flex-flow: row wrap;
+}
+
+img {
+  width: 30vw;
+}
