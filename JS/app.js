@@ -1,38 +1,40 @@
 'use strict';
 
-function Dog(dog) {
-  this.name = dog.name;
-  this.image_url = dog.image_url;
-  this.hobbies = dog.hobbies;
+function Horns(horn) {
+  this.title = horn.name;
+  this.image = horn.image;
+  this.description = horn.hobbies;
+  this.keyword = horn.keyword;
+  this.horns = horn.horns;
 }
 
-Dog.allDogs = [];
+Horns.allHorns = [];
 
-Dog.prototype.render = function() {
+Horns.prototype.render = function() {
   $('main').append('<div class="clone"></div>');
-  let dogClone = $('div[class="clone"]');
-  let dogHtml = $('#dog-template').html();
-  dogClone.html(dogHtml);
+  let hornClone = $('div[class="clone"]');
+  let hornHtml = $('#photo-template').html();
+  hornClone.html(hornHtml);
 
-  dogClone.find('h2').text(this.name);
-  dogClone.find('img').attr('src', this.image_url);
-  dogClone.find('p').text(this.hobbies);
-  dogClone.removeClass('clone');
-  dogClone.attr('class', this.name);
+  hornClone.find('h2').text(this.title);
+  hornClone.find('img').attr('src', this.image);
+  hornClone.find('p').text(this.description);
+  hornClone.removeClass('clone');
+  hornClone.attr('class', this.title);
 }
 
-Dog.readJson = () => {
-  $.get('data.json', 'json')
+Horns.readJson = () => {
+  $.get('../DATA/page-1.json', 'json')
     .then(data => {
       data.forEach(obj => {
-        Dog.allDogs.push(new Dog(obj))
+        Horns.allHorns.push(new Horns(obj))
       })
     })
-    .then(Dog.loadDogs)
+    .then(Horns.loadHorns)
 }
 
-Dog.loadDogs = () => {
-  Dog.allDogs.forEach( dog => dog.render());
+Horns.loadHorns = () => {
+  Horns.allhorns.forEach( horn => horn.render());
 }
 
-$(() => Dog.readJson());
+$(() => Horns.readJson());
