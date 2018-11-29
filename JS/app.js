@@ -6,12 +6,14 @@ function Horns(horn) {
   this.description = horn.description;
   this.keyword = horn.keyword;
   this.horns = horn.horns;
+  // keyword.push() = this.keyword
 }
 
 Horns.allHorns = [];
 
+
 Horns.prototype.render = function() {
-  $('main').append('<div class="clone"></div>');
+  $('div[class="photo-container"]').append('<div class="clone"></div>');
   let hornClone = $('div[class="clone"]');
   let hornHtml = $('#photo-template').html();
   hornClone.html(hornHtml);

@@ -1,8 +1,38 @@
-#photo-template.div {
+.photo-container {
   display:flex;
   flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+body {
+  text-align: center;
+  font-family: 'Underdog', cursive;
 }
 
+.photo-container div {
+  width: 20%;
+  padding: 30px 10px;
+}
 img {
-  width: 30vw;
+  height: 15vw;
+  width: 15vw;
+}
+
+h1 {
+  font-size: 75px;
+  padding: 30px;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 23px;
+  padding-bottom: 8px;
+}
+
+p {
+  font-style: italic;
+  padding: 8px 20px;
+}
+
+select {
+  font-size: 18px;
 }
