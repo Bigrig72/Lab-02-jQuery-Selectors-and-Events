@@ -37,10 +37,26 @@ Horns.readJson = () => {
 }
 
 Horns.loadHorns = () => {
+  // let hornOptions = $(`#keywords`);
+  // let uniqueKeywords = [];
+  // $.each(Horns.allKeywords, function(i, el) {
+  //   if($.inArray(el, uniqueKeywords) === -1) uniqueKeywords.push(el);
+  //   hornOptions.append(`<option>${uniqueKeywords[i]}</option>`);
+  // });
+
   let hornOptions = $('#keywords');
   for (let i = 0; i < Horns.allHorns.length; i++) {
-    hornOptions.append(`<option>${Horns.allHorns[i].keyword}</option>`);
+    if($.inArray(i, Horns.allKeywords) >= 0) {
+      Horns.allKeywords.push(Horns.allHorns[i].keyword);
+      hornOptions.append(`<option>${Horns.allHorns[i].keyword}</option>`);
+    } else {
+      continue;
+    }
   }
+  // let hornOptions = $('#keywords');
+  // for (let i = 0; i < Horns.allHorns.length; i++) {
+  //   hornOptions.append(`<option>${Horns.allHorns[i].keyword}</option>`);
+  // }
 
   //How to remove duplicates in drop down???
 
