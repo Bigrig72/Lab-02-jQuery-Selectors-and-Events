@@ -6,13 +6,14 @@ function Horns(horn) {
   this.description = horn.description;
   this.keyword = horn.keyword;
   this.horns = horn.horns;
-  // keyword.push() = this.keyword
+
 }
 
 Horns.allHorns = [];
+Horns.allKeywords = [];
 
 
-Horns.prototype.render = function() {
+Horns.prototype.render = function () {
   $('div[class="photo-container"]').append('<div class="clone"></div>');
   let hornClone = $('div[class="clone"]');
   let hornHtml = $('#photo-template').html();
@@ -36,6 +37,13 @@ Horns.readJson = () => {
 }
 
 Horns.loadHorns = () => {
+  let hornOptions = $('#keywords');
+  for (let i = 0; i < Horns.allHorns.length; i++) {
+    hornOptions.append(`<option>${Horns.allHorns[i].keyword}</option>`);
+  }
+
+  //How to remove duplicates in drop down???
+
   console.log(Horns.allHorns);
   // Horns.allhorns.forEach(horn => horn.render());
   for (let i = 0; i < Horns.allHorns.length; i++) {
