@@ -23,7 +23,7 @@ Horns.prototype.render = function () {
   hornClone.find('img').attr('src', this.image_url);
   hornClone.find('p').text(this.description);
   hornClone.removeClass('clone');
-  hornClone.attr('class', this.title);
+  hornClone.attr('class', this.keyword);
 }
 
 Horns.readJson = () => {
@@ -35,25 +35,42 @@ Horns.readJson = () => {
       });
     })
     .then(Horns.loadHorns)
+    .then(Horns.handleFilter);
 }
 
 Horns.loadHorns = () => {
   let hornOptions = $('#keywords');
-  
+
   for (let i = 0; i < Horns.allHorns.length; i++) {
-    if(!Horns.allKeywords.includes(Horns.allHorns[i].keyword)) {
+    if (!Horns.allKeywords.includes(Horns.allHorns[i].keyword)) {
       Horns.allKeywords.push(Horns.allHorns[i].keyword);
     }
   }
 
-  for(let i = 0; i < Horns.allKeywords.length; i++) {
-    hornOptions.append(`<option>${Horns.allKeywords[i]}</option>`);
+  for (let i = 0; i < Horns.allKeywords.length; i++) {
+    hornOptions.append(`<option value=${Horns.allKeywords[i]}>${Horns.allKeywords[i]}</option>`);
   }
-
 
   for (let i = 0; i < Horns.allHorns.length; i++) {
     Horns.allHorns[i].render();
   }
 }
+
+Horns.handleFilter = () => {
+  $('select').on('change', function () {
+    let selectedHorn = $(this).val();
+    if (selectedHorn !== 'Filter by Keyword') {
+      $('div').hide();
+      
+      Horns.allHorns.forEach(horn => {
+        if(selectedHorn === horn.keyword){
+          $(`div[class="${selectedHorn}"]`).addClass('filtered').fadeIn();
+        }
+      });
+      // $(`option[value="${selectedHorn}"]`).fadeIn();
+    }
+  })
+}
+
 
 $(() => Horns.readJson());
